@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>500 - MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        500 Error Page
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">500 error</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="error-page">
+                        <h2 class="headline text-red">500</h2>
+
+                        <div class="error-content">
+                            <h3><i class="fa fa-warning text-red"></i> Oops! Algo salió mal.</h3>
+                            <p>
+                                Trabajaremos para solucionarlo de inmediato. Mientras tanto, puede regresar al <a th:href="@{/}">inicio</a>.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- /.error-page -->
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

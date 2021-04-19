@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Instituciones
+                        <small>Lista</small>
+
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Instituciones</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Info boxes -->
+                    <div class="box">
+                        <div class="box-header">
+
+                        </div>
+                        <!-- /.box-header -->
+
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-sm-2 pull-right">
+                                    <a th:href="@{organismos/nuevo}" class="btn btn-primary">Agregar</a>
+                                </div>
+                            </div>
+                            <div th:if="${mostrarmsj}" class="alert alert-success alert-dismissible " role="alert">
+                                <span th:utext="${successMessage}"></span>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+
+
+
+                            <table id="tabla" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Denominacion</th>
+
+
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr th:each="organismo : ${organismos}">
+                                        <td th:text="${organismo.denominacion}">Denominacion</td>
+
+
+                                        <td><a th:href="@{'/organismos/edit/'} + ${organismo.id}" title='Modificar'>
+                                                <i class="fa fa-edit"></i><span class='hidden-sm'> Editar</span>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

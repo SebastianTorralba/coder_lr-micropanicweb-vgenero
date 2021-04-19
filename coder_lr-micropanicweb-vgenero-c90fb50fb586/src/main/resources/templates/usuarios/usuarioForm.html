@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Usuarios
+                        <small>Lista</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Usuarios</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+
+
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Nuevo Usuario</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form autocomplete="off" action="#" th:action="@{/usuarios/nuevo}"
+                              th:object="${usuario}" method="post" class="form-horizontal"
+                              role="form">
+                            <div class="box-body">
+                                <fieldset>
+                                    <legend>Datos:</legend>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{persona.razonSocial}"
+                                                   placeholder="Apellido y Nombre"
+                                                   class="form-control" />
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('persona.razonSocial')}"
+                                                       th:errors="*{persona.razonSocial}"
+                                                       class="control-label">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>                        
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{persona.dni}"
+                                                   placeholder="Nro. de Documento"
+                                                   class="form-control" />
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('persona.dni')}"
+                                                       th:errors="*{persona.dni}"
+                                                       class="control-label">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{persona.tel}"
+                                                   placeholder="Telefono"
+                                                   class="form-control" />
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('persona.tel')}"
+                                                       th:errors="*{persona.tel}"
+                                                       class="control-label">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> 
+<!--                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{username}"
+                                                   placeholder="Nombre de Usuario"
+                                                   class="form-control" />
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('username')}"
+                                                       th:errors="*{username}"
+                                                       class="control-label">
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>                                -->
+
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{email}"
+                                                   placeholder="Email"
+                                                   class="form-control" />
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="password" th:field="*{clave}"
+                                                   placeholder="clave" class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+
+                                            <select  id="rol" class="form-control" required="required" 
+                                                     th:value="${rol}" name="rol">
+                                                <option value="-1">--Seleccionar--</option>
+                                                <option th:each="rol: ${roles}" 
+                                                        th:value="${rol.id}" 
+                                                        th:text="${rol.denominacion}" >
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--                                <fieldset>
+                                                                    <legend>Paramtros:</legend>
+                                
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-9">
+                                                                            <div class="has-error">
+                                                                                <label th:if="${#fields.hasErrors('paramA')}" th:errors="*{paramA}"
+                                                                                class="control-label"></label>
+                                                                            </div>
+                                                                            <input type="text" th:field="*{paramA}" placeholder="Parametro A"
+                                                                                   class="form-control" /> 
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-9"><div class="has-error">
+                                                                            <label th:if="${#fields.hasErrors('paramB')}" th:errors="*{paramB}"
+                                                                                   class="control-label"></label>
+                                                                            </div>
+                                                                            <input type="text" th:field="*{paramB}" placeholder="Parametro B"
+                                                                                   class="form-control" /> 
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-9">
+                                                                            <div class="has-error">
+                                                                            <label th:if="${#fields.hasErrors('paramC')}" th:errors="*{paramC}"
+                                                                                   class="control-label"></label>
+                                                                            </div>
+                                                                            <input type="text" th:field="*{paramC}" placeholder="Parametro C"
+                                                                                   class="form-control" /> 
+                                                                        </div>
+                                                                    </div>
+                                                                </fieldset>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <a th:href="@{/usuarios}" class="btn btn-warning btn-block">Volver</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
+                                </div>
+                            </div>
+
+                            <span th:utext="${successMessage}"></span>
+
+
+                        </form>
+                    </div>
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

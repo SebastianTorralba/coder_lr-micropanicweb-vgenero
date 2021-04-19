@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Eventos
+                        <small>Lista</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Eventos</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Info boxes -->
+                    <div class="box">
+                        <div class="box-header"> 
+                            <div class="row">
+                                <div class="col-sm-2 pull-right">
+                                    <a th:href="@{/eventos/nuevo}" class="btn btn-primary">Agregar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="tabla" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Tipo Evento</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr th:each="evento : ${eventos}">
+                                        <td th:text="${evento.username}">Denominacion</td>
+                                        <td th:text="${evento.tipoEvento}">Denominacion</td>
+                                        <td th:text="${evento.estadoEvento}">Denominacion</td>
+                                        <td th:text="${#dates.format(evento.fechaOperacion, 'dd/MMM/yyyy HH:mm:ss')}">Denominacion</td>
+                                        <td><a th:href="@{'/eventos/'} + ${evento.id}" title='Detalle'>
+                                                <i class="fa fa-edit"></i><span class='hidden-sm'> info</span>
+                                            </a>
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.row -->
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

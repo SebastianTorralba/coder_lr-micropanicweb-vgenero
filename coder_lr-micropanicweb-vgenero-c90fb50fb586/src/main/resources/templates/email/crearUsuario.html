@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Panic Alarm</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+        <!-- use the font -->
+        <style>
+            body {
+                font-family: 'Roboto', sans-serif;
+                font-size: 48px;
+            }
+        </style>
+    </head>
+    <body style="margin: 0; padding: 0;">
+        <div bgcolor="#dfe5e9" style="margin:0;padding:0">
+            <table style="font-size:0px;line-height:0px" width="100%" cellspacing="0" cellpadding="0" bgcolor="#dfe5e9" align="center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <table class="m_4874439509034226812contenttable" width="550" cellspacing="0" cellpadding="0" border="0" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <table class="m_4874439509034226812introcopy" width="550" cellspacing="0" cellpadding="0" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="padding:10px 20px 10px 20px;font-family:Verdana,Arial,sans-serif;color:#454545;font-size:11px;line-height:14px;font-weight:normal;text-align:center" class="m_4874439509034226812intro-copy-cell">
+                                                            <span style="text-transform:uppercase;font-weight:bold">
+                                                                <span class="il">Confirmación</span>
+                                                            </span>
+                                                            <br />Tú [<a th:href="${'mailto:'+ email}" target="_blank"><span th:text=${email}></span></a>] 
+                                                            has recibido este correo debido a que te registraste en micropanicweb.com.ar desde su app android.
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="m_4874439509034226812bug" style="min-width:550px" width="550" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="m_4874439509034226812headercell" style="padding:21px 0 30px 33px;max-width:200px">
+                                                            <img src="http://panico.coder.com.ar:8080/micropanicweb/img/logo.png" alt="Panic Alarm" title="Panic Alarm" class="CToWUd" 
+                                                                 border="0" style="width: 300px;align-content: center;"/>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="m_4874439509034226812bodytable" width="550" cellspacing="0" cellpadding="0" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="m_4874439509034226812body" style="font-family:Verdana,Arial,sans-serif;color:#3b3b3b;font-size:14px;line-height:22px;padding:15px 33px 40px 33px" valign="top" bgcolor="#FFFFFF">
+                                                            <table class="m_4874439509034226812header-table" width="480" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="m_4874439509034226812header" style="font-family:Verdana,Arial,sans-serif;color:#000000;font-size:32px;line-height:40px;padding:0 0 0 0">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+
+                                                            <table summary="spacer" width="280" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-size:12px;line-height:12px" height="20">&nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <p th:text="${'Hola ' + nombre}"></p>
+                                                            <table summary="spacer" width="280" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-size:12px;line-height:12px" height="12">&nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            Gracias por registrarse en PANIC ALARM     en tu dispositivo. 
+                                                            <p th:text="${'usuario: ' + username}"></p>
+                                                            <p th:text="${'clave: ' + clave}"></p>
+                                                            <table summary="spacer" width="280" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-size:12px;line-height:12px" height="12">&nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>									
+                                                            Para activar su usuario, visita el siguiente link
+                                                            <a class="" th:href="${hash}" target="_blank" >
+                                                                CLICK AQUI PARA CONFIRMAR SU CUENTA DE USUARIO
+                                                            </a>.
+                                                            <p>Si tu navegador bloquea el enlace, copia la siguiente URL  y pegalo en tu navegador</p>
+                                                            <p th:text="${hash}"></p>
+                                                            <table summary="spacer" width="280" cellspacing="0" cellpadding="0" border="0">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="font-size:12px;line-height:12px" height="12">&nbsp;
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>                                                            
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="m_4874439509034226812socialtable" width="550" cellspacing="0" cellpadding="0" border="0" bgcolor="#FFFFFF">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="m_4874439509034226812social-icons" style="padding:0 23px 0 0">
+                                                            <table width="224" cellspacing="0" cellpadding="0" border="0" align="right">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="73" height="92">
+                                                                            <a href="https://twitter.com/#" title="Twitter" target="_blank" >                                          
+                                                                            </a>
+                                                                        </td>
+                                                                        <td width="49" height="92">
+                                                                            <a href="https://plus.google.com/#/posts" title="Google+" target="_blank" >
+                                                                            </a>
+                                                                        </td>
+                                                                        <td width="50" height="92">
+                                                                            <a href="http://www.facebook.com/#" title="Facebook" target="_blank" 
+                                                                        </a>
+                                                                    </td> 
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="m_4874439509034226812shadow" width="550" cellspacing="0" cellpadding="0" border="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-size:1px;line-height:1px">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="m_4874439509034226812legaltable" width="550" cellspacing="0" cellpadding="0" border="0" align="center">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding:20px 20px 15px 20px;font-family:Verdana,Arial,sans-serif;
+                                                        color:#444444;font-size:11px;line-height:16px">
+                                                        <a style="color:#444444;text-decoration:none">
+                                                            <span style="color:#444444;text-decoration:none">
+                                                                2018 - Ministerio de Gobierno, Justicia, Seguridad y Derechos Humanos. 
+                                                            </span>
+                                                            <span style="color:#444444;text-decoration:none">
+                                                                <br />Plan Provincial de Modernizacion</span>
+                                                            <span style="color:#444444;text-decoration:none">
+                                                                <br /> Secretaria General Legal de la Gobernacion </span>
+                                                            <span style="color:#444444;text-decoration:none">
+                                                                <br />Subsecretaria Legal y Tecnica y de Gestion Publica</span><br/><br/>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody></table>
+        <div class="yj6qo"></div>
+        <div class="adL">
+        </div>
+    </div>
+</body>
+</html>

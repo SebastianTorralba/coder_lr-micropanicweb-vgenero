@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+            <head lang="en" th:fragment="menu">
+                <meta charset="utf-8"/>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+                <meta name="Sistema de Ventas" content=""/>
+                <meta name="leoGaray" content=""/>
+                <title>PanicAlarm Web</title>
+                <!-- Tell the browser to be responsive to screen width -->
+                <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+                <!-- Bootstrap 3.3.7 -->
+                <link rel="stylesheet" type="text/css" th:href="@{/vendor/bower_components/bootstrap/dist/css/bootstrap.min.css}" />
+                <!-- Font Awesome -->
+                <link rel="stylesheet" type="text/css"  th:href="@{/vendor/bower_components/font-awesome/css/font-awesome.min.css}" />
+                <!-- Ionicons -->
+                <link rel="stylesheet" type="text/css"  th:href="@{/vendor/bower_components/Ionicons/css/ionicons.min.css}" />
+                <!-- jvectormap -->
+                <link rel="stylesheet" type="text/css"  th:href="@{/vendor/bower_components/jvectormap/jquery-jvectormap.css}" />
+                <!-- Theme style -->
+                <link rel="stylesheet" type="text/css"  th:href="@{/vendor/dist/css/AdminLTE.min.css}" />
+                <!-- AdminLTE Skins. Choose a skin from the css/skins
+                     folder instead of downloading all of them to reduce the load. -->
+                <link rel="stylesheet" type="text/css"  th:href="@{/vendor/dist/css/skins/_all-skins.min.css}" />
+                <link rel="stylesheet" th:href="@{/vendor/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css}">
+
+
+                    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+                    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+                    <!--[if lt IE 9]>
+                    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+                    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+                    <![endif]-->
+
+                    <!-- Google Font -->
+                    <!--        <link rel="stylesheet"  type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />-->
+
+                    <!-- jQuery 3 -->
+                    <script th:src="@{/vendor/bower_components/jquery/dist/jquery.min.js}"></script>
+                    <!-- Bootstrap 3.3.7 -->
+                    <script th:src="@{/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js}"></script>
+                    <!-- FastClick -->
+                    <!-- AdminLTE App -->
+                    <script th:src="@{/vendor/dist/js/adminlte.min.js}"></script>
+
+
+                    <!-- scripts propio-->
+                    <script th:src="@{/js/main.js}"></script>
+            </head>
+            <body class="hold-transition skin-blue sidebar-mini">
+                <div class="wrapper">
+
+                    <!-- Content Wrapper. Contains page content -->
+                    <div class="content-wrapper">
+                        <!-- Content Header (Page header) style="height: 38px; width: 37px"  -->
+
+                        <!-- Main content -->
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img  th:src="@{/img/logo.png}"  style="width: 30%;" alt="MicroPanic"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="callout callout-info col-md-6">
+                                    <h4>Cuenta de Usuario</h4>
+                                    <strong th:text="${msj}"></strong>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- /.content -->
+                    </div>
+
+                    <div th:replace="fragments/footer :: footer">
+                    </div>
+                </div>
+                <!-- ./wrapper -->
+            </body>
+        </html>

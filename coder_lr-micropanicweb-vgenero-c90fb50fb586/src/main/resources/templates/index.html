@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+        <style type="text/css">
+            div#map{
+                width:100%;
+                height:450px;
+            }
+        </style>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDCKTeJ_9s5tOWlBwoYP9VIUzZGT3tSoT8"></script>
+        <script type="text/javascript" th:src="@{/js/gmaps.js}"></script>
+        <script type="text/javascript" th:src="@{/js/eventosMaps.js}"></script>
+        <script type="text/javascript" th:src="@{/js/moment.min.js}"></script>
+        <script th:inline="javascript">
+            $(document).ready(function () {
+                // prettyPrint();
+                map = new GMaps({
+                    div: '#map',
+                    lat: -29.4134538,
+                    lng: -66.8564579,
+                    zoom: 12
+                });
+
+                map.on('marker_added', function (marker) {
+//                    var index = map.markers.indexOf(marker);
+//                    $('#results').append('<li><a href="#" class="pan-to-marker" data-marker-index="' + index + '">' + marker.title + '</a></li>');
+//                    if (index == map.markers.length - 1) {
+//                        map.fitZoom();
+//                    }
+                    marker.addListener('click', function () {
+                        //console.log(marker.getPosition());
+                        map.setZoom(17);
+                        var pos = marker.getPosition();
+                        map.setCenter(pos.lat(), pos.lng());
+                    });
+                });
+                var urlServer = /*[[${urlServer}]]*/ '';
+                var url = urlServer + "api/eventos/getAll";
+                var xhr = $.getJSON(url);
+
+                //xhr.done(printResults);
+                xhr.done(loadResults);
+            });
+        </script>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini" >
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>Dashboard
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="fa fa-dashboard active">Dashboard</li>
+                    </ol>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-8">
+
+                        </div>    
+                    </div>
+                    <!--mapa-->
+                    <!-- Main row -->
+                    <!--                    detalle-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box collapsed-box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Info...</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <h4 class="text-info">Niveles de Riesgo</h4>
+                                    <table  class="table table-responsive table-condensed">
+                                        <thead>
+                                            <th  class="text-center"><img th:src="@{img/logo-small-red-32.png}"/></th>
+                                            <th class="text-center"><img th:src="@{img/logo-small-orange-32.png}"/></th>
+                                            <th class="text-center"> <img th:src="@{img/logo-small-grey-32.png}"/></th>
+                                            <th class="text-center"><img th:src="@{img/logo-small-blue-32.png}"/></th>
+                                        </thead>
+                                        <tbody>
+                                            <td class="text-center">Alto Riezgo</td>
+                                            <td class="text-center">Medio</td>
+                                            <td class="text-center">Baja</td>
+                                            <td class="text-center">Sin Clasificar</td>
+                                        </tbody>
+
+                                    </table>
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div>
+                    <!-- fin detalle -->
+
+                    <div class="row">
+                        <!-- Left col -->
+                        <div class="col-md-12">
+                            <!-- MAPs & BOX PANE -->
+                            <div class="box box-success">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Mapa de Eventos</h3>
+
+                                    <div class="col-sm-2 pull-right">
+                                        <a th:href="@{/eventos/nuevo}" class="btn btn-primary">Agregar</a>
+                                    </div>
+
+                                </div>
+                                <!-- /.detalle -->
+                                <div class="box-body no-padding">
+
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <!--mapa-->
+                                            <div class="pad"> 
+                                                <!-- Map will be created here -->
+                                                <div id="map"></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row" id="datosjson"></div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="box">
+                        <div class="box-header"> 
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="tabla" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Tipo Evento</th>
+                                        <th>Estado</th>
+                                        <th>Fecha</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    <tr th:each="evento : ${eventosGps}">
+                                        <td th:text="${evento.username}">Denominacion</td>
+                                        <td th:text="${evento.tipoEvento}">Denominacion</td>
+                                        <td th:text="${evento.estadoEvento}">Denominacion</td>
+                                        <td th:text="${#dates.format(evento.fechaOperacion, 'dd/MMM/yyyy HH:mm:ss')}">Denominacion</td>
+
+                                        <td><a th:href="@{'/eventos/'} + ${evento.id}" title='Detalle'>
+                                                <i class="fa fa-edit"></i><span class='hidden-sm'> info</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </section>    
+            </div>
+
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>MicroPanic Web</title>
+        <!--/*/ <th:block th:include="fragments/menuinc :: head"></th:block> /*/-->
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper"  th:fragment="menu">
+            <!--/*/ <th:block th:include="fragments/menu :: header"></th:block> /*/-->
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Nueva <small>Persona</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a th:href="@{/}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        <li class="active">Personas</li>
+                    </ol>
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Datos Personales</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form autocomplete="off" action="#" th:action="@{/personas/nuevo}"
+                              th:object="${persona}" method="post" class="form-horizontal"
+                              role="form">
+                            <div class="box-body">
+                                <fieldset id="datos_personales">
+                                    <div>
+                                        <input type="hidden" th:field="*{id}" class="form-control" /> 
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{razonSocial}" placeholder="Apellido y Nombre"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <input type="text"  th:field="*{dni}" placeholder="DNI"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-5">
+                                            <input type="text" th:field="*{cuil}" placeholder="CUIL / CUIT"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('cuil')}" th:errors="*{cuil}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select  class="form-control" required="required" 
+                                                     th:field="*{sexo}">
+                                                <!--th:value="${sexo}" name="${sexo}"-->
+                                                <option value=""> Seleccionar</option>
+                                                <option value="M"> Masculino</option>
+                                                <option value="F"> Femenino</option>
+                                                <option value="O"> Otro</option>
+                                            </select>
+
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" th:field="*{nacionalidad}" placeholder="Nacionalidad"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="domicilio">
+                                    <legend>Domicilios</legend>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select  id="pcias" class="form-control" required="required">
+                                                <option value="-1">--Seleccionar--</option>
+                                                <option th:each="pcia: ${pcias}" 
+                                                        th:value="${pcia.id}" 
+                                                        th:text="${pcia.denominacion}" >
+                                                </option>
+                                            </select>
+                                            <div class="has-error">
+                                                <!--                                                <label th:if="${#fields.hasErrors('pcia')}" th:errors="*{pcia}"
+                                                                                                class="control-label"></label>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <select  id="localidad" class="form-control" required="required" 
+                                                     th:value="${localidad}" 
+                                                     name="${localidad}"
+                                                     th:field="${persona.localidad}">
+                                                <option value="-1">--Seleccionar--</option>
+                                                <!--                                                <option th:each="localidad: ${localidades}" 
+                                                                                                        th:value="${localidad.id}" 
+                                                                                                        th:text="${localidad.denominacion}" >
+                                                                                                </option>-->
+                                            </select>
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('localidad')}" th:errors="*{localidad}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{barrio}" placeholder="Barrio"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('barrio')}" th:errors="*{barrio}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <input type="text" th:field="*{domicilio}" placeholder="Domicilio"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" th:field="*{nroCasa}" placeholder="Nro. Domicilio"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('nroCasa')}" th:errors="*{nroCasa}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="text" th:field="*{nroDpto}" placeholder="Nro. Dpto"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('nroDpto')}" th:errors="*{nroDpto}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>    
+                                <fieldset id="contacto">
+                                    <legend>Datos de Contacto</legend>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{email}" placeholder="Email"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <input type="text" th:field="*{tel}" placeholder="Telefono Principal"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-3">
+                                            <input type="text" th:field="*{celu1}" placeholder="Telefono / Celular"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('celu1')}" th:errors="*{celu1}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <input type="text" th:field="*{celu2}" placeholder="Telefono / Celular"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('celu2')}" th:errors="*{celu2}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <input type="text" th:field="*{celu3}" placeholder="Telefono / Celular"
+                                                   class="form-control" /> 
+                                            <div class="has-error">
+                                                <label th:if="${#fields.hasErrors('celu3')}" th:errors="*{celu3}"
+                                                       class="control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>    
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <a th:href="@{/personas}" class="btn btn-warning btn-block">Volver</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-primary btn-block">Confirmar</button>
+                                </div>
+                            </div>
+
+                            <span th:utext="${successMessage}"></span>
+
+
+                        </form>
+                    </div>
+                </section>
+                <!-- /.content -->
+            </div>
+
+            <div th:replace="fragments/footer :: footer">
+            </div>
+        </div>
+        <!-- ./wrapper -->
+
+
+
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function () {
+
+                var contexPath = "<%=request.getContextPath() %>";
+
+                $('#pcias').change(function (e) {
+                    if ($('#pcias').val() != "-1") {
+                      
+                        $('#localidad').find('option').remove().end()
+                                .append('<option value="nopar">--Seleccionar--</option>');
+
+                        e.preventDefault();
+                        //var datos = {};
+                        var datos  = $("#pcias").val();
+                        $("#localidad").removeAttr("disabled");
+
+                        $.ajax({
+                            type: "GET",
+                            contentType: "application/json",
+                            url: "/api/localidades/"+datos,
+
+                            data: JSON.stringify(datos),
+                            dataType: 'json',
+                            cache: false,
+                            timeout: 600000,
+                            success: function (data) {
+//                                var json = JSON.stringify(data, null, 4);
+//                                console.log("json : ", json);
+                                var datos = data.data;
+                                for (var i = 0, len = datos.length; i < len; ++i) {
+                                    var msajax = datos[i];
+                                    $('#localidad').append("<option value=\"" + msajax.id + "\">" + msajax.denominacion + "</option>");
+                                }
+                            },
+                            error: function (e) {
+                                console.log("ERROR : ", e);
+                            }
+                        });
+                    } else {
+                        $("#localidad").attr("disabled", "disabled");
+                        $('#localidad').find('option').remove().end()
+                                .append('<option value="nopar">--Seleccionar--</option>');
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
